@@ -1,6 +1,6 @@
 import { bootstrap, defaultConfig, JobQueueService, mergeConfig } from '@vendure/core';
 import { populate } from '@vendure/core/cli';
-import { clearAllTables, populateCustomers } from '@vendure/testing';
+//import { clearAllTables, populateCustomers } from '@vendure/testing';
 import path from 'path';
 import { config } from './src/vendure-config';
 import { initialData } from './initialData';
