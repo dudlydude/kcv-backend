@@ -19,7 +19,8 @@
     "@vendure/email-plugin": "1.3.3",
     "@vendure/testing": "1.3.3",
     "better-sqlite3": "7.4.4",
-    "typescript": "4.3.5"
+    "typescript": "4.3.5",
+    "@types/express-serve-static-core": "^4.17.21",
   },
   "devDependencies": {
     "concurrently": "6.3.0",
