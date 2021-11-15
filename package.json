@@ -2,7 +2,7 @@
   "name": "kcv-backend",
   "version": "0.1.0",
   "private": true,
-  "main": "dist/index.js",
+  "main": "build/index.js",
   "scripts": {
     "run:server": "ts-node ./src/index.ts",
     "run:worker": "ts-node ./src/index-worker.ts",
@@ -16,8 +16,7 @@
   },
   "workspaces": {
     "packages": [
-      "node_modules/*",
-      "src/*"
+      "node_modules/*"
     ]
   },
   "dependencies": {
