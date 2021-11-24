@@ -1,0 +1,15 @@
+{
+    "version": 0.1,
+    "builds": [
+        {
+            "src": ["./src/index.js","./src/index-worker.ts","./src/vendure-config.ts"],
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "./src/(.*)",
+            "dest": "/admin"
+        }
+    ]
+}
