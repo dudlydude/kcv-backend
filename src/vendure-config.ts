@@ -9,9 +9,15 @@ import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import path from 'path';
 
+const procPORTstr = process.env.PORT || "3001"
+const procPORT = parseInt(procPORTstr)
+
+const procadminPORTstr = process.env.PORT || "3002"
+const procadminPORT = parseInt(procPORTstr)
+
 export const config: VendureConfig = {
     apiOptions: {
-        port: 3001,
+        port: procPORT,
         adminApiPath: 'admin-api',
         adminApiPlayground: {
             settings: {
@@ -72,7 +78,7 @@ export const config: VendureConfig = {
         // }),
         AdminUiPlugin.init({
             route: 'admin',
-            port: 3002,
+            port: procadminPORT,
         }),
     ],
 };
