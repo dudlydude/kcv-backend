@@ -8,7 +8,7 @@
     "target": "es2017",
     "strict": true,
     "sourceMap": false,
-    "outDir": "./build",
+    "outDir": "./dist",
     "baseUrl": "./"
   },
   "exclude": ["node_modules", "migration.ts", "initialData.ts", "populate-products.ts"]

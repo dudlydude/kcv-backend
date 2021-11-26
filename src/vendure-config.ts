@@ -13,7 +13,7 @@ const procPORTstr = process.env.PORT || "3001"
 const procPORT = parseInt(procPORTstr)
 
 const procadminPORTstr = process.env.PORT || "3002"
-const procadminPORT = parseInt(procPORTstr)
+const procadminPORT = parseInt(procadminPORTstr)
 
 export const config: VendureConfig = {
     apiOptions: {

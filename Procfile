@@ -1,1 +1,1 @@
-web: npm install yarn && yarn install && yarn start
+web: node ./dist/index.js && node ./dist/index-worker.js
