@@ -1,1 +1,2 @@
-web: node ./dist/index.js && node ./dist/index-worker.js
+web: node ./dist/index.js
+web: node ./dist/index-worker.js
