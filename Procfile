@@ -1,2 +1,1 @@
-web: node ./dist/index.js
-web: node ./dist/index-worker.js
+web: npm install -g concurrently && concurrently "node ./dist/index.js" "node ./dist/index-worker.js"
