@@ -1,1 +1,1 @@
-web: yarn install -g concurrently && yarn install -g ts-node && ts-node populate-products.ts && concurrently "node ./dist/index.js" "node ./dist/index-worker.js"
+web: yarn global add concurrently && yarn global add ts-node && ts-node populate-products.ts && concurrently "node ./dist/index.js" "node ./dist/index-worker.js"
