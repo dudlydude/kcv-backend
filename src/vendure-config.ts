@@ -36,7 +36,7 @@ export const config: VendureConfig = {
         synchronize: false, // turn this off for production
         logging: false,
         database: 'postgresql-metric-37123',
-        host: 'process.env.DATABASE_URL',
+        host: process.env.DATABASE_URL,
         port: 5432,
         username: '',
         password: '',
