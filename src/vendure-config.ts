@@ -33,12 +33,11 @@ export const config: VendureConfig = {
     },
     dbConnectionOptions: {
         type: 'postgres',
-        synchronize: false, // turn this off for production
+        synchronize: true, // turn this off for production
         logging: false,
-        host: process.env.DATABASE_URL,
-        ssl: true,
-        extra: {
-            rejectUnauthorized: false,
+        url: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
         },
         migrations: [path.join(__dirname, '../migrations/*.ts')],
     },

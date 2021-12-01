@@ -1,1 +1,1 @@
-web: npm install -g concurrently && npm install -g ts-node && ts-node populate-products.ts && concurrently "node ./dist/index.js" "node ./dist/index-worker.js"
+web: npm install -g concurrently && concurrently "node ./dist/index.js" "node ./dist/index-worker.js"
