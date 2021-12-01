@@ -37,8 +37,8 @@ export const config: VendureConfig = {
         logging: false,
         database: 'postgresql-metric-37123',
         host: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false
+        extra: {
+            ssl: true,
         },
         migrations: [path.join(__dirname, '../migrations/*.ts')],
     },
