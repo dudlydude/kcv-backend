@@ -37,9 +37,6 @@ export const config: VendureConfig = {
         logging: false,
         database: 'postgresql-metric-37123',
         host: process.env.DATABASE_URL,
-        port: 5432,
-        username: '',
-        password: '',
         migrations: [path.join(__dirname, '../migrations/*.ts')],
     },
     paymentOptions: {
