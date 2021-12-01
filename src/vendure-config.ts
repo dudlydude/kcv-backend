@@ -35,10 +35,10 @@ export const config: VendureConfig = {
         type: 'postgres',
         synchronize: false, // turn this off for production
         logging: false,
-        database: 'postgresql-metric-37123',
         host: process.env.DATABASE_URL,
+        ssl: true,
         extra: {
-            ssl: true,
+            rejectUnauthorized: false,
         },
         migrations: [path.join(__dirname, '../migrations/*.ts')],
     },
