@@ -6,6 +6,7 @@ import {
 } from '@vendure/core'; 
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
+import {GoogleStorageStrategy, GoogleStorageConfig } from './google-asset-storage-strategy'
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import path from 'path';
 
@@ -48,30 +49,33 @@ export const config: VendureConfig = {
     plugins: [
         AssetServerPlugin.init({
             route: 'assets',
-            assetUploadDir: path.join(__dirname, '../static/assets'),
+            assetUploadDir: path.join(__dirname, '../assets'),
+            storageStrategyFactory: () => new GoogleStorageStrategy({
+                bucketName: 'kcv-assets'
+            }),
         }),
         DefaultJobQueuePlugin.init({ useDatabaseForBuffer: true }),
         DefaultSearchPlugin.init({ bufferUpdates: false, indexStockStatus: true }),
-        EmailPlugin.init({
-            transport: {
-                type: 'smtp',
-                host: '',
-                port: 666,
-                auth: {
-                  user: '',
-                  pass: '',
-                }
-              },
-            handlers: defaultEmailHandlers,
-            templatePath: path.join(__dirname, '../static/email/templates'),
-            globalTemplateVars: {
-                // The following variables will change depending on your storefront implementation
-                fromAddress: '',
-                verifyEmailAddressUrl: '',
-                passwordResetUrl: '',
-                changeEmailAddressUrl: ''
-            },
-        }),
+        // EmailPlugin.init({
+        //     transport: {
+        //         type: 'smtp',
+        //         host: '',
+        //         port: 666,
+        //         auth: {
+        //           user: '',
+        //           pass: '',
+        //         }
+        //       },
+        //     handlers: defaultEmailHandlers,
+        //     templatePath: path.join(__dirname, '../static/email/templates'),
+        //     globalTemplateVars: {
+        //         // The following variables will change depending on your storefront implementation
+        //         fromAddress: '',
+        //         verifyEmailAddressUrl: '',
+        //         passwordResetUrl: '',
+        //         changeEmailAddressUrl: ''
+        //     },
+        // }),
         AdminUiPlugin.init({
             route: 'admin',
             port: procadminPORT,
