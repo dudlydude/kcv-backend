@@ -2,7 +2,7 @@ import { AssetStorageStrategy } from '@vendure/core';
 import { Storage } from '@google-cloud/storage';
 import { Request } from 'express';
 import { Stream } from 'stream';
-import * as tmp from 'tmp';
+import tmp from 'tmp';
 import * as fs from 'fs';
 
 export interface GoogleStorageConfig {
