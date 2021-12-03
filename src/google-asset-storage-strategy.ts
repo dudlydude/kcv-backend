@@ -4,9 +4,14 @@ import { Request } from 'express';
 import { Stream } from 'stream';
 import * as tmp from 'tmp';
 import * as fs from 'fs';
+import sharp from 'sharp';
 
 export interface GoogleStorageConfig {
     bucketName: string;
+    thumbnails?: {
+        height: number;
+        width: number;
+      };
   }
 
 export class GoogleStorageStrategy implements AssetStorageStrategy {
@@ -16,6 +21,12 @@ export class GoogleStorageStrategy implements AssetStorageStrategy {
 
   constructor(private config: GoogleStorageConfig) {
     this.bucketName = config.bucketName;
+    if (!config.thumbnails) {
+        config.thumbnails = {
+          height: 300,
+          width: 300,
+        };
+      }
     var pID = process.env.GCLOUD_PROJECT || '';
     var creds = process.env.GOOGLE_APPLICATION_CREDENTIALS || ''
     this.storage = new Storage({
@@ -74,6 +85,9 @@ export class GoogleStorageStrategy implements AssetStorageStrategy {
     await this.storage.bucket(this.bucketName).upload(tmpFile.name, {
       destination: fileName,
     });
+    if (fileName.startsWith('preview/')) {
+        await this.writeThumbnail(fileName, tmpFile.name);
+      }
     return fileName;
   }
 
@@ -93,6 +107,21 @@ export class GoogleStorageStrategy implements AssetStorageStrategy {
       stream.on('finish', resolve);
       stream.on('close', resolve);
       stream.on('error', reject);
+    });
+  }
+  /**
+   * Transforms local file to thumbnail (jpg) and uploads to Storage
+   */
+   async writeThumbnail(fileName: string, localFilePath: string): Promise<void> {
+    const tmpFile = tmp.fileSync({ postfix: '.jpg' });
+    await sharp(localFilePath)
+      .resize({
+        width: this.config.thumbnails!.width,
+        height: this.config.thumbnails!.height,
+      })
+      .toFile(tmpFile.name);
+    await this.storage.bucket(this.bucketName).upload(tmpFile.name, {
+      destination: `${fileName}_thumbnail.jpg`,
     });
   }
 }
