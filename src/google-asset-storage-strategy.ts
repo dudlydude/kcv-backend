@@ -21,12 +21,6 @@ export class GoogleStorageStrategy implements AssetStorageStrategy {
   }
 
   toAbsoluteUrl(request: Request | undefined, identifier: string): string {
-    if ((request as any)?.vendureRequestContext?._apiType === 'admin') {
-      // go via assetServer if admin
-      return `${request!.protocol}://${request!.get(
-        'host'
-      )}/assets/${identifier}`;
-    }
     return `${this.urlPrefix}/${this.bucketName}/${identifier}`;
   }
 
