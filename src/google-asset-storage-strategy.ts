@@ -16,10 +16,11 @@ export class GoogleStorageStrategy implements AssetStorageStrategy {
 
   constructor(private config: GoogleStorageConfig) {
     this.bucketName = config.bucketName;
-    
+    var pID = process.env.GCLOUD_PROJECT || '';
+    var creds = process.env.GOOGLE_APPLICATION_CREDENTIALS || ''
     this.storage = new Storage({
-        projectId: process.env.GCLOUD_PROJECT || '',
-        credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS || '')
+        projectId: pID,
+        credentials: JSON.parse(creds)
     });
   }
 
