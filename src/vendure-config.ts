@@ -16,6 +16,8 @@ const procPORT = parseInt(procPORTstr)
 const procadminPORTstr = process.env.PORT || "3002"
 const procadminPORT = parseInt(procadminPORTstr)
 
+const adminPass = process.env.ADMINPASS || '@dmin42069'
+
 export const config: VendureConfig = {
     apiOptions: {
         port: procPORT,
@@ -25,7 +27,7 @@ export const config: VendureConfig = {
     authOptions: {
         superadminCredentials: {
             identifier: 'supercanivibe',
-            password: '@dmin42069',
+            password: adminPass,
         },
         tokenMethod: 'cookie',
         cookieOptions: {
@@ -34,7 +36,7 @@ export const config: VendureConfig = {
     },
     dbConnectionOptions: {
         type: 'postgres',
-        synchronize: true, // turn this off for production
+        synchronize: false, // turn this off for production
         logging: false,
         url: process.env.DATABASE_URL,
         ssl: {
