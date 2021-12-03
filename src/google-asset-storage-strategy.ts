@@ -18,8 +18,8 @@ export class GoogleStorageStrategy implements AssetStorageStrategy {
     this.bucketName = config.bucketName;
     
     this.storage = new Storage({
-        projectId: process.env.GCLOUD_PROJECT,
-        credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+        projectId: process.env.GCLOUD_PROJECT || '',
+        credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS || '')
     });
   }
 
